@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRMS Student Login</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom colors based on the red/blue theme established earlier */
+        :root {
+            --primary-blue: #0A1931;
+            --accent-red: #D72323;
+        }
+
+        /* Applying custom colors using Tailwind utility overrides */
+        .bg-primary-blue { background-color: var(--primary-blue); }
+        .text-accent-red { color: var(--accent-red); }
+        .border-accent-red { border-color: var(--accent-red); }
+        .focus\:ring-accent-red:focus { --tw-ring-color: var(--accent-red); }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <!-- Student Login Card -->
+    <div class="w-full max-w-md bg-white rounded-xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-[1.01]">
+        
+        <!-- Header -->
+        <div class="bg-primary-blue p-6 text-white text-center rounded-t-xl">
+            <!-- Icon change for Student -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto text-accent-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0v-4" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0v-4M12 14v4" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18v4" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19h6" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4l9 5-9 5-9-5 9-5z" />
+            </svg>
+            <h1 class="text-2xl font-bold mt-2">SRMS FOR STUDENTS</h1>
+            <p class="text-sm opacity-80">Access your grades, courses, and transcripts</p>
+        </div>
+
+        <!-- Login Form -->
+        <div class="p-8">
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                
+                <!-- Message Box for Feedback -->
+                <div id="messageBox" class="hidden p-3 mb-4 rounded-lg text-center font-medium transition duration-300"></div>
+
+                <!-- Student ID Input -->
+                <div class="mb-5">
+                    <label for="studentId" class="block text-sm font-medium text-gray-700 mb-1">Student ID</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-5m-2-4h5l-5-5v5z" />
+                            </svg>
+                        </span>
+                        <input type="text" id="studentId" name="studentId" placeholder="e.g., S0012345" required
+                               class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-blue focus:ring-2 focus:ring-accent-red transition duration-150"
+                               autocomplete="username">
+                    </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="mb-6">
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                            </svg>
+                        </span>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required
+                               class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-blue focus:ring-2 focus:ring-accent-red transition duration-150"
+                               autocomplete="current-password">
+                    </div>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit"
+                        class="w-full bg-primary-blue text-white py-3 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition duration-300 shadow-md hover:shadow-lg">
+                    <i class="fas fa-sign-in-alt mr-2"></i> Access Student Portal
+                </button>
+            </form>
+
+            <p class="mt-6 text-center text-sm text-gray-500">
+                New user? 
+                <a href="#" class="text-accent-red hover:text-primary-blue transition duration-150 font-medium">Register for Access</a>
+            </p>
+        </div>
+        
+    </div>
+
+    <!-- JavaScript for Basic Validation and Feedback -->
+    <script>
+        const messageBox = document.getElementById('messageBox');
+        const studentIdField = document.getElementById('studentId');
+        const passwordField = document.getElementById('password');
+
+        // Hardcoded Credentials for Student (DANGER: DO NOT use hardcoded credentials in production!)
+        const STUDENT_ID = 'S12345';
+        const STUDENT_PASS = 'student123';
+
+        function showMessage(message, type = 'success') {
+            messageBox.textContent = message;
+            messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
+            
+            if (type === 'error') {
+                messageBox.classList.add('bg-red-100', 'text-red-700');
+            } else {
+                messageBox.classList.add('bg-green-100', 'text-green-700');
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault(); // Stop the form from submitting normally
+
+            const studentId = studentIdField.value.trim();
+            const password = passwordField.value.trim();
+
+            if (studentId === STUDENT_ID && password === STUDENT_PASS) {
+                showMessage('Login successful! Redirecting to student dashboard...', 'success');
+                // In a real application, you would replace this with a redirect:
+                // window.location.href = '/student/dashboard';
+                
+                // Simulate redirect after 2 seconds
+                setTimeout(() => {
+                    // This is where you would load the Student Portal content
+                    document.body.innerHTML = `
+                        <div class="text-center p-10 bg-white rounded-xl shadow-lg">
+                            <h2 class="text-3xl font-bold text-primary-blue mb-4">Welcome, ${studentId}!</h2>
+                            <p class="text-gray-700">Access to your Student Portal is granted.</p>
+                        </div>
+                    `;
+                }, 2000);
+
+            } else {
+                showMessage('Invalid Student ID or password. Please check your credentials.', 'error');
+                passwordField.value = ''; // Clear password field on failure
+            }
+        }
+    </script>
+</body>
+</html>

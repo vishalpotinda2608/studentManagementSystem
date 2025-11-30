@@ -1,0 +1,69 @@
+{%extends 'base.html'%}
+
+{% block content %}
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="display-3 fw-bold">Dr.D.Y.Patil Student Record Management</h1>
+            <p class="lead mb-4">Centralized platform for tracking academic progress, attendance, and administrative data.</p>
+            
+            <a href="#" class="btn btn-custom-red btn-lg me-2">View Records</a> 
+            
+            <a href="#" class="btn btn-outline-info btn-lg">Add New Student</a> 
+        </div>
+    </header>
+
+    ---
+
+    <section class="container my-5">
+        <h2 class="text-center mb-4" style="color: var(--bs-red);">Key Features</h2> 
+        <div class="row text-center">
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0 border-top border-5 border-info">
+                    <div class="card-body">
+                        <h3 class="card-title text-info">
+                            <i class="bi bi-person-plus-fill me-2"></i> Add/Edit Students
+                        </h3>
+                        <p class="card-text">Quickly register new students and update existing personal and academic information.</p>
+                        <a href="#" class="icon-link">
+                            Go to Form
+                            <svg class="bi" width="1em" height="1em" fill="currentColor"><path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 11h1.5v-2h2v2H11v-1.5h-2v-2H5v1.5zm6.5-6.5V2H11v1.5h-2V5h2V3.5h1.5z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0 border-top border-5 border-danger">
+                    <div class="card-body">
+                        <h3 class="card-title text-danger">
+                            <i class="bi bi-table me-2"></i> View Records
+                        </h3>
+                        <p class="card-text">Access a searchable and filterable database of all student records instantly.</p>
+                        <a href="#" class="icon-link">
+                            View Database
+                            <svg class="bi" width="1em" height="1em" fill="currentColor"><path d="M0 0h16v16H0z" fill="none"/><path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM4 3h8v1H4V3zm0 2h8v1H4V5zm0 2h8v1H4V7zm0 2h8v1H4V9zm0 2h8v1H4v-1z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0 border-top border-5 border-info">
+                    <div class="card-body">
+                        <h3 class="card-title text-info">
+                            <i class="bi bi-file-earmark-bar-graph-fill me-2"></i> Generate Reports
+                        </h3>
+                        <p class="card-text">Create detailed academic, attendance, and performance reports for administration.</p>
+                        <a href="#" class="icon-link">
+                            Generate Reports
+                            <svg class="bi" width="1em" height="1em" fill="currentColor"><path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6 10H5V6h1v4zm2-4h1v4H8V6zm2 0h1v4h-1V6z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<!-- </html> -->
+{%endblock %}
