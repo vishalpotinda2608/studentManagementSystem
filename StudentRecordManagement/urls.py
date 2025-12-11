@@ -28,4 +28,7 @@ urlpatterns = [
     path('admin',admin_page, name='admin_page'),
     path('student-login',studentLogin, name='studentLogin'),
     path('faculty-login',facultylogin, name='facultylogin'),
+
+    path('dashboard',dashboard, name='dashboard'),
+    path('faculty_InnerPage',facultyInnerPage, name='facultyInnerPage'),
 ]

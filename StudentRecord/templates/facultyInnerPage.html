@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard - SRMS (Lighter Theme)</title>
+    <style>
+        /* Define Color Variables */
+        :root {
+            --primary-light-blue: #D6E0F0; /* Very light slate background */
+            --secondary-dark-blue: #1C3879; /* Deep blue for header/accents */
+            --accent-bright-red: #C0392B; /* Strong red for alerts/actions */
+            --content-background: #FFFFFF; /* Pure white for content blocks */
+            --text-dark: #333333;
+            --text-light: #F0F0F0;
+        }
+        
+        /* General Body and Layout */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-light-blue);
+            color: var(--text-dark);
+        }
+        
+        /* Header and Navigation */
+        header {
+            background-color: var(--secondary-dark-blue);
+            color: var(--text-light);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            color: var(--accent-bright-red); /* Title highlighted in red */
+        }
+        .user-info {
+            font-size: 14px;
+        }
+        .user-info nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 15px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .user-info nav a:hover {
+            background-color: var(--accent-bright-red);
+        }
+        
+        /* Main Container */
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        /* Sidebar Menu */
+        .sidebar {
+            width: 250px;
+            background-color: var(--content-background);
+            padding: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-right: 30px;
+            height: fit-content;
+        }
+        .sidebar h3 {
+            padding: 0 20px 10px 20px;
+            border-bottom: 2px solid var(--secondary-dark-blue);
+            margin-bottom: 15px;
+            color: var(--secondary-dark-blue);
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .sidebar li a:hover, .sidebar li a.active {
+            background-color: var(--primary-light-blue);
+            color: var(--secondary-dark-blue);
+            font-weight: bold;
+        }
+        
+        /* Main Content Area */
+        .content {
+            flex-grow: 1;
+        }
+        .dashboard-section {
+            background-color: var(--content-background);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+        .dashboard-section h2 {
+            color: var(--secondary-dark-blue);
+            border-bottom: 1px solid var(--primary-light-blue);
+            padding-bottom: 15px;
+            margin-top: 0;
+            font-size: 22px;
+        }
+
+        /* Overview Cards */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .card {
+            background-color: var(--primary-light-blue);
+            border: 1px solid var(--secondary-dark-blue); 
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(28, 56, 121, 0.2);
+        }
+        .card-value {
+            font-size: 44px;
+            font-weight: 700;
+            color: var(--accent-bright-red);
+            margin-bottom: 5px;
+        }
+        .card-label {
+            font-size: 16px;
+            color: var(--text-dark);
+        }
+
+        /* Quick Action Button */
+        .action-button {
+            background-color: var(--accent-bright-red);
+            color: var(--text-light);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 15px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .action-button:hover {
+            background-color: #A93226; /* Slightly darker red on hover */
+            box-shadow: 0 5px 15px rgba(192, 57, 43, 0.4);
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        th, td {
+            border: 1px solid #D6E0F0; /* Very light border */
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--secondary-dark-blue);
+            color: var(--text-light);
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #F8F9FA; /* Off-white stripe effect */
+        }
+        tr:hover {
+            background-color: var(--primary-light-blue);
+        }
+        td a {
+            color: var(--secondary-dark-blue);
+            text-decoration: none;
+            margin-right: 10px;
+            transition: color 0.2s;
+        }
+        td a:hover {
+            color: var(--accent-bright-red);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Student Record Management System</h1>
+        <div class="user-info">
+            Welcome, **Dr. Jane Doe** (Faculty ID: F101) |
+            <nav>
+                <a href="javascript:void(0);">Settings</a>
+                <a href="login.html" style="background-color: var(--accent-bright-red);">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="sidebar">
+            <h3>Faculty Menu</h3>
+            <ul>
+                <li><a href="#" class="active">🏠 Dashboard</a></li>
+                <li><a href="javascript:void(0);">📚 My Courses</a></li>
+                <li><a href="javascript:void(0);">📝 Enter Grades</a></li>
+                <li><a href="javascript:void(0);">🧑‍🎓 Student Attendance</a></li>
+                <li><a href="javascript:void(0);">✉️ Messages</a></li>
+                <li><a href="javascript:void(0);">⚙️ Profile Settings</a></li>
+            </ul>
+        </div>
+        
+        <div class="content">
+            
+            <div class="dashboard-section">
+                <h2>📊 Dashboard Overview</h2>
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-value">3</div>
+                        <div class="card-label">Courses Taught</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-value">125</div>
+                        <div class="card-label">Total Students</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-value">80%</div>
+                        <div class="card-label">Avg. Class Grade</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-value">2</div>
+                        <div class="card-label">Pending Grade Submissions</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-section">
+                <h2>🚨 Quick Actions & Alerts</h2>
+                <p><strong>Upcoming Deadline:</strong> Grades for **CS101 - Data Structures** are due by <span style="color: var(--accent-bright-red); font-weight: bold;">Friday, 12/15/2025</span>.</p>
+                <p><strong>New Request:</strong> 5 students have requested a meeting regarding their project grades.</p>
+                <button class="action-button">Enter Grades Now</button>
+            </div>
+
+            <div class="dashboard-section">
+                <h2>📚 My Current Courses</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Course ID</th>
+                            <th>Course Name</th>
+                            <th>Total Enrolled</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CS101</td>
+                            <td>Data Structures</td>
+                            <td>45</td>
+                            <td style="color: var(--accent-bright-red); font-weight: 500;">Grades Due</td>
+                            <td><a href="javascript:void(0);">View Roster</a> | <a href="javascript:void(0);">Submit Grades</a></td>
+                        </tr>
+                        <tr>
+                            <td>MATH205</td>
+                            <td>Differential Equations</td>
+                            <td>30</td>
+                            <td>In Progress</td>
+                            <td><a href="javascript:void(0);">View Roster</a> | <a href="javascript:void(0);">View Attendance</a></td>
+                        </tr>
+                        <tr>
+                            <td>ENG499</td>
+                            <td>Senior Project Capstone</td>
+                            <td>50</td>
+                            <td>In Progress</td>
+                            <td><a href="javascript:void(0);">View Roster</a> | <a href="javascript:void(0);">Review Proposals</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

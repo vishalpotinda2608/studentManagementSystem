@@ -76,7 +76,11 @@ WSGI_APPLICATION = 'StudentRecordManagement.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'studentrecordms_db',
+        'USER': 'root',
+        'PASSWORD':'',
+        'HOST': 'localhost',
+        'PORT':'3306',
     }
 }
 

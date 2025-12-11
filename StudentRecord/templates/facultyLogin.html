@@ -118,16 +118,10 @@
                 showMessage('Login successful! Redirecting to faculty dashboard...', 'success');
                 // In a real application, replace this with window.location.href = '/faculty/dashboard';
                 
-                // Simulate redirect after 2 seconds
+                // Simulate redirect after 1 seconds
                 setTimeout(() => {
-                    // This is where you would load the Faculty Portal content
-                    document.body.innerHTML = `
-                        <div class="text-center p-10 bg-white rounded-xl shadow-lg">
-                            <h2 class="text-3xl font-bold text-primary-blue mb-4">Welcome, Instructor ${facultyId}!</h2>
-                            <p class="text-gray-700">Access to your Faculty Portal is granted.</p>
-                        </div>
-                    `;
-                }, 2000);
+                   window.location.href = "facultyInnerPage.html";
+                }, 1000);
 
             } else {
                 showMessage('Invalid Faculty ID or password. Please check your credentials.', 'error');

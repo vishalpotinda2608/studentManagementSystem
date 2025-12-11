@@ -1,5 +1,5 @@
-
 {% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,7 +95,7 @@
 
         // Hardcoded Credentials (DANGER: NEVER use hardcoded credentials in production!)
         const ADMIN_USER = 'sro_admin';
-        const ADMIN_PASS = 'adminpass123';
+        const ADMIN_PASS = 'admin@123';
 
         function showMessage(message, type = 'success') {
             messageBox.textContent = message;
@@ -121,14 +121,9 @@
                 
                 // Simulate redirect after 2 seconds
                 setTimeout(() => {
-                    // This is where you would load the Admin Dashboard content
-                    document.body.innerHTML = `
-                        <div class="text-center p-10 bg-white rounded-xl shadow-lg">
-                            <h2 class="text-3xl font-bold text-primary-blue mb-4">Welcome Back, SRO!</h2>
-                            <p class="text-gray-700">Access to the Student Records Management Dashboard is granted.</p>
-                        </div>
-                    `;
+                   window.location.href = "dashboard";
                 }, 2000);
+                
 
             } else {
                 showMessage('Invalid username or password. Please try again.', 'error');
