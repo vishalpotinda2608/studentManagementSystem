@@ -30,5 +30,5 @@ urlpatterns = [
     path('faculty-login',facultylogin, name='facultylogin'),
 
     path('dashboard',dashboard, name='dashboard'),
-    path('faculty_InnerPage',facultyInnerPage, name='facultyInnerPage'),
+    path('facultyInnerPage',facultyInnerPage, name='facultyInnerPage'),
 ]

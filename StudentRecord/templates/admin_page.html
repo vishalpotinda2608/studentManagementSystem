@@ -38,7 +38,8 @@
 
         <!-- Login Form -->
         <div class="p-8">
-            <form id="loginForm" onsubmit="handleLogin(event)">
+            <form id="loginForm" method="post" onsubmit="handleLogin(event)">
+                {% csrf_token %}
                 
                 <!-- Message Box for Feedback -->
                 <div id="messageBox" class="hidden p-3 mb-4 rounded-lg text-center font-medium transition duration-300"></div>
